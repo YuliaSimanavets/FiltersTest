@@ -1,0 +1,6 @@
+framework module Pods_CoreImageFiltersTest {
+  umbrella header "Pods-CoreImageFiltersTest-umbrella.h"
+
+  export *
+  module * { export * }
+}

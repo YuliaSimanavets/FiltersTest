@@ -1,0 +1,15 @@
+{
+  "originHash" : "a5999a5064b43103afc8ae4ba67c008bafa6431b65c7e16c3fce30e56c0b0791",
+  "pins" : [
+    {
+      "identity" : "cifilterfactory",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/dagronf/CIFilterFactory",
+      "state" : {
+        "revision" : "f1dd60127e197aaee98c3cf88d946106edc16ad8",
+        "version" : "18.0.0"
+      }
+    }
+  ],
+  "version" : 3
+}
