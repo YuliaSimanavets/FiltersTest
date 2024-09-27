@@ -101,7 +101,7 @@ final class CIFilterManager {
     // MARK: - CICategoryColorAdjustment
     
     //Exposure
-    func getCIImageWithExposureFilter(inputImage: CIImage, inputEV: Double) -> CIImage? {
+    func getCIImageWithExposureFilter(inputImage: CIImage, inputEV: Double = 0.5) -> CIImage? {
         guard let filter = CIFF.ExposureAdjust(inputImage: inputImage, eV: inputEV),
               let ciImage = filter.outputImage
         else { return nil}
@@ -125,9 +125,16 @@ final class CIFilterManager {
     }
     
     //GammaAdjust
-    func getCIImageWithGammaAdjustFilter(inputImage: CIImage, gammaValue: Double) -> CIImage? {
-        // Гамма 1.24
+    func getCIImageWithGammaAdjustFilter(inputImage: CIImage, gammaValue: Double = 0.75) -> CIImage? {
         guard let filter = CIFF.GammaAdjust(inputImage: inputImage, power: gammaValue),
+              let ciImage = filter.outputImage
+        else { return nil }
+        return ciImage
+    }
+    
+    //HueAdjust
+    func getCIImageWithHueAdjustFilter(inputImage: CIImage, angle: Double = 0.0) -> CIImage? {
+        guard let filter = CIFF.HueAdjust(inputImage: inputImage, angle: angle),
               let ciImage = filter.outputImage
         else { return nil }
         return ciImage
@@ -137,6 +144,29 @@ final class CIFilterManager {
     func getCIImageWithWhitePointAdjustFilter(inputImage: CIImage, newWhitePoint: CIColor) -> CIImage? {
         // newWhitePoint = CIColor(red: 208/255.0, green: 208/255.0, blue: 208/255.0)
         guard let filter = CIFF.WhitePointAdjust(inputImage: inputImage, color: newWhitePoint),
+              let ciImage = filter.outputImage
+        else { return nil }
+        return ciImage
+    }
+    
+    //TemperatureAndTint
+    func getCIImageWithTemperatureAndTintFilter(inputImage: CIImage, 
+                                                neutral: CGPoint = .init(x: 6500, y: 0),
+                                                targetNeutral: CGPoint = .init(x: 6500, y: 0)
+    ) -> CIImage? {
+        guard let filter = CIFF.TemperatureAndTint(inputImage: inputImage,
+                                                   neutral: neutral,
+                                                   targetNeutral: targetNeutral),
+              let ciImage = filter.outputImage
+        else { return nil }
+        return ciImage
+    }
+    
+    //Vibrance
+    func getCIImageWithVibranceFilter(inputImage: CIImage,
+                                      vibrance: Double = 0) -> CIImage? {
+        guard let filter = CIFF.Vibrance(inputImage: inputImage,
+                                         amount: vibrance),
               let ciImage = filter.outputImage
         else { return nil }
         return ciImage

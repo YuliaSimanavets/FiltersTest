@@ -23,10 +23,6 @@ final class CIVideoPlayerViewModel {
     }
     
     func preparedVideo(by url: URL, filterID: FilterName) async -> URL? {
-        // apply filter (добавление фильтра на всю композицию)
-        //        preparedURL = try? await creationManager.addFilterToFullComp(assetLink: url)
-        
-        
         switch filterID {
 //        case .clones:
             // Clones filter
@@ -41,6 +37,9 @@ final class CIVideoPlayerViewModel {
          
         case .colorMatrix:
             preparedURL = try? await creationManager.applyColorMatrixToFullComp(assetLink: url)
+            
+        case .colorCorrection:
+            preparedURL = try? await creationManager.applyColorFiltersToFullComp(assetLink: url)
         }
         
         return preparedURL

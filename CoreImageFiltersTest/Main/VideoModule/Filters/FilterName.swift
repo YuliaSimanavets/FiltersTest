@@ -16,7 +16,8 @@ enum FilterName: String, CaseIterable {
     
     case curve = "Curve"
     case colorMatrix = "Color matrix"
-//    case curveColorMatrix = "Curve + Color matrix"
+    
+    case colorCorrection = "Color Correction"
 }
 
 struct CurvePoints {
