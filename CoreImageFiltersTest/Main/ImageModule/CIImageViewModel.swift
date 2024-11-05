@@ -112,4 +112,34 @@ final class CIImageViewModel {
         finalImage = UIImage(cgImage: filteredImageRef!, scale: srcScale, orientation: srcOrientation)
         return finalImage
     }
+    
+    func applyDisplacementDistortionMask(for inputImage: UIImageView, displacementImage: UIImage, scale: Double) -> UIImage? {
+       
+        var finalImage = UIImage()
+        guard let image = inputImage.image,
+              let firstCIImage = CIImage(image: image)
+        else { return nil }
+        firstCIImage.cropped(to: inputImage.bounds)
+        
+        guard let displCIImage = CIImage(image: displacementImage)
+        else { return nil }
+        displCIImage.cropped(to: inputImage.bounds)
+        
+        // здесь ничего менять не нужно
+        let ciContext = CIContext(options: nil)
+        let srcScale = image.scale
+        let srcOrientation = image.imageOrientation
+        
+        let displacementDistortion = filterManager.getCIImageWithDisplacementDistortionFilter(inputImage: firstCIImage,
+                                                                                              displacementImage: displCIImage,
+                                                                                              scale: scale)
+        
+        // здесь менять фильтры
+        guard let filteredImageData = displacementDistortion else { return nil }
+        
+        // здесь ничего не меняем
+        let filteredImageRef = ciContext.createCGImage(filteredImageData, from: firstCIImage.extent)
+        finalImage = UIImage(cgImage: filteredImageRef!, scale: srcScale, orientation: srcOrientation)
+        return finalImage
+    }
 }

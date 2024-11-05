@@ -75,10 +75,11 @@ final class CIFilterManager {
     
     //DisplacementDistortion
     func getCIImageWithDisplacementDistortionFilter(inputImage: CIImage,
-                                                    displacementImage: CIImage) -> CIImage? {
+                                                    displacementImage: CIImage,
+                                                    scale: Double) -> CIImage? {
         guard let filter = CIFF.DisplacementDistortion(inputImage: inputImage,
                                                        displacementImage: displacementImage,
-                                                       scale: 5),
+                                                       scale: scale),
               let ciImage = filter.outputImage
         else { return nil }
         return ciImage

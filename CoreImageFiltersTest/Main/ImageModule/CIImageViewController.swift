@@ -184,8 +184,11 @@ final class CIImageViewController: UIViewController {
         }
 
         applyMaskButton.buttonActionCallback = { [weak self] in
-            guard let self, !(firstPhotoViewContainer.image == nil), !isMaskAdded else { return }
-            let filteredImage = self.viewModel.applyMask(with: firstPhotoViewContainer, and: maskImage)
+            guard let self, !(firstPhotoViewContainer.image == nil), !isMaskAdded
+            else { return }
+            let filteredImage = self.viewModel.applyDisplacementDistortionMask(for: firstPhotoViewContainer,
+                                                                               displacementImage: maskImage,
+                                                                               scale: 1000)
             firstPhotoViewContainer.image = nil
             firstPhotoViewContainer.image = filteredImage
         }

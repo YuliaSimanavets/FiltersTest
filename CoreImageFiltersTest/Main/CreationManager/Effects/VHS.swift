@@ -121,9 +121,8 @@ extension CICreationVideoManager {
                                                                                        radius: 0.7,
                                                                                        amount: 3.5),
                 // 11. Displace Map (displacementDistortion())
-                      let mixedDisplacementCIImage = filterManager.getCIImageWithDisplacementDistortionFilter(
-                        inputImage: mixedUnsharpMaskCIImage,
-                        displacementImage: overlay1CIImage),
+                      let /*finalCIImage*/ mixedDisplacementCIImage = filterManager.getCIImageWithDisplacementDistortionFilter(inputImage: mixedUnsharpMaskCIImage, displacementImage: overlay1CIImage, scale: 10),
+
                 // 12. return to input size ?
                       let finalCIImage = filterManager.getCIImageWithLanczosScaleTransformFilter(inputImage: mixedDisplacementCIImage,
                                                                                                  scaleFactor: 4)
