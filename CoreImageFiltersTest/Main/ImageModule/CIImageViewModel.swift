@@ -10,9 +10,11 @@ import UIKit
 final class CIImageViewModel {
     
     private let filterManager: CIFilterManager
+    private let cutoutManager: CICutoutObjectManager
     
-    init(filterManager: CIFilterManager) {
+    init(filterManager: CIFilterManager, cutoutManager: CICutoutObjectManager) {
         self.filterManager = filterManager
+        self.cutoutManager = cutoutManager
     }
     
     func applyFirstFilter(for inputImage: UIImageView) -> UIImage? {
@@ -139,6 +141,28 @@ final class CIImageViewModel {
         
         // здесь ничего не меняем
         let filteredImageRef = ciContext.createCGImage(filteredImageData, from: firstCIImage.extent)
+        finalImage = UIImage(cgImage: filteredImageRef!, scale: srcScale, orientation: srcOrientation)
+        return finalImage
+    }
+    
+    func applyCutout(for inputImage: UIImageView) -> UIImage? {
+        
+        var finalImage = UIImage()
+        guard let image = inputImage.image else { return nil }
+        guard let ciImage = CIImage(image: image) else { return nil }
+        ciImage.cropped(to: inputImage.bounds)
+        
+        let ciContext = CIContext(options: nil)
+        let srcScale = image.scale
+        let srcOrientation = image.imageOrientation
+        
+        let cutoutObjects = cutoutManager.getCutoutObjects(inputImage: ciImage)
+        guard let cutoutObject = cutoutObjects.objectImage
+//              let cutoutBackground = cutoutObjects.backgroundWithoutObjectImage
+        else { return nil }
+
+        // здесь ничего не меняем
+        let filteredImageRef = ciContext.createCGImage(cutoutObject, from: ciImage.extent)
         finalImage = UIImage(cgImage: filteredImageRef!, scale: srcScale, orientation: srcOrientation)
         return finalImage
     }

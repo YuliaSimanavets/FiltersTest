@@ -20,9 +20,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let filterManager = CIFilterManager()
         let creationManager = CICreationVideoManager(filterManager: filterManager)
+        let cutoutManager = CICutoutObjectManager(filterManager: filterManager)
 
         let coordinatorFactory = CICoordinatorFactory(appContext: CIAppContext(filterManager: filterManager,
-                                                                               creationManager: creationManager))
+                                                                               creationManager: creationManager,
+                                                                               cutoutManager: cutoutManager))
         appCoordinator = CIAppCoordinator(window: window,
                                           coordinatorFactory: coordinatorFactory)
         appCoordinator?.start()

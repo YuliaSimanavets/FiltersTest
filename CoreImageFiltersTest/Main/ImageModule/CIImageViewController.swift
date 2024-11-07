@@ -169,9 +169,16 @@ final class CIImageViewController: UIViewController {
     
     private func setApplyButtonActions() {
         
+//        applyFirstFilterButton.buttonActionCallback = { [weak self] in
+//            guard let self, !(firstPhotoViewContainer.image == nil) else { return }
+//            let filteredImage = self.viewModel.applyFirstFilter(for: firstPhotoViewContainer)
+//            firstPhotoViewContainer.image = nil
+//            firstPhotoViewContainer.image = filteredImage
+//        }
+        
         applyFirstFilterButton.buttonActionCallback = { [weak self] in
             guard let self, !(firstPhotoViewContainer.image == nil) else { return }
-            let filteredImage = self.viewModel.applyFirstFilter(for: firstPhotoViewContainer)
+            let filteredImage = self.viewModel.applyCutout(for: firstPhotoViewContainer)
             firstPhotoViewContainer.image = nil
             firstPhotoViewContainer.image = filteredImage
         }

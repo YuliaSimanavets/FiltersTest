@@ -10,10 +10,13 @@ import Foundation
 final class CIAppContext {
     let filterManager: CIFilterManager
     let creationManager: CICreationVideoManager
+    let cutoutManager: CICutoutObjectManager
     
     init(filterManager: CIFilterManager, 
-         creationManager: CICreationVideoManager) {
+         creationManager: CICreationVideoManager,
+         cutoutManager: CICutoutObjectManager) {
         self.filterManager = filterManager
         self.creationManager = creationManager
+        self.cutoutManager = cutoutManager
     }
 }

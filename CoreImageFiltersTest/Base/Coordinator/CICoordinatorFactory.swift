@@ -19,7 +19,7 @@ final class CICoordinatorFactory {
 extension CICoordinatorFactory {
     
     var ciImageCoordinator: CITabBarCoordinator {
-        CIImageCoordinator(filterManager: appContext.filterManager)
+        CIImageCoordinator(filterManager: appContext.filterManager, cutoutManager: appContext.cutoutManager)
     }
 
     var videoCoordinator: CITabBarCoordinator {

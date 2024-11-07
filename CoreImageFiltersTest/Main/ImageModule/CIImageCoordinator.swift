@@ -10,9 +10,11 @@ import UIKit
 final class CIImageCoordinator {
 
     private let filterManager: CIFilterManager
+    private let cutoutManager: CICutoutObjectManager
     
-    init(filterManager: CIFilterManager) {
+    init(filterManager: CIFilterManager, cutoutManager: CICutoutObjectManager) {
         self.filterManager = filterManager
+        self.cutoutManager = cutoutManager
     }
 }
 
@@ -23,7 +25,7 @@ extension CIImageCoordinator: CITabBarCoordinator {
     }
 
     func rootView() -> UIViewController {
-        let viewModel = CIImageViewModel(filterManager: filterManager)
+        let viewModel = CIImageViewModel(filterManager: filterManager, cutoutManager: cutoutManager)
         let rootView = CIImageViewController(viewModel: viewModel)
         rootView.coordinator = self
         return rootView
