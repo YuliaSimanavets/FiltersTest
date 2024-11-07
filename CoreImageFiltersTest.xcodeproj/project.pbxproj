@@ -39,6 +39,8 @@
 		CAC1BB7D2CA5A8C400300C90 /* CITabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC1BB612CA5A8C400300C90 /* CITabBarItem.swift */; };
 		CAC1BB7E2CA5A8C400300C90 /* CIAAddMediaButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC1BB632CA5A8C400300C90 /* CIAAddMediaButton.swift */; };
 		CAC1BB7F2CA5A8C400300C90 /* CIAppContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC1BB652CA5A8C400300C90 /* CIAppContext.swift */; };
+		CAC7D8752CDA71EB000492EE /* Clones.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC7D8742CDA71EB000492EE /* Clones.swift */; };
+		CAC7D8772CDA72C4000492EE /* u2netp.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = CAC7D8762CDA72C4000492EE /* u2netp.mlmodel */; };
 		CAF1A60E2CA6997C00588541 /* Curve.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF1A60D2CA6997C00588541 /* Curve.swift */; };
 		CAF1A6102CA699B500588541 /* ColorMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF1A60F2CA699B500588541 /* ColorMatrix.swift */; };
 		CAF1A6122CA69A0000588541 /* VHS.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF1A6112CA69A0000588541 /* VHS.swift */; };
@@ -81,6 +83,8 @@
 		CAC1BB612CA5A8C400300C90 /* CITabBarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CITabBarItem.swift; sourceTree = "<group>"; };
 		CAC1BB632CA5A8C400300C90 /* CIAAddMediaButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CIAAddMediaButton.swift; sourceTree = "<group>"; };
 		CAC1BB652CA5A8C400300C90 /* CIAppContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CIAppContext.swift; sourceTree = "<group>"; };
+		CAC7D8742CDA71EB000492EE /* Clones.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clones.swift; sourceTree = "<group>"; };
+		CAC7D8762CDA72C4000492EE /* u2netp.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = u2netp.mlmodel; sourceTree = "<group>"; };
 		CAF1A60D2CA6997C00588541 /* Curve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Curve.swift; sourceTree = "<group>"; };
 		CAF1A60F2CA699B500588541 /* ColorMatrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorMatrix.swift; sourceTree = "<group>"; };
 		CAF1A6112CA69A0000588541 /* VHS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VHS.swift; sourceTree = "<group>"; };
@@ -224,6 +228,7 @@
 			children = (
 				CAC1BB542CA5A8C400300C90 /* VHS_DisplaceMap.mp4 */,
 				CAC1BB552CA5A8C400300C90 /* VHS_Overlay.mov */,
+				CAC7D8762CDA72C4000492EE /* u2netp.mlmodel */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -281,6 +286,7 @@
 		CAF1A60C2CA6996400588541 /* Effects */ = {
 			isa = PBXGroup;
 			children = (
+				CAC7D8742CDA71EB000492EE /* Clones.swift */,
 				CAF1A6112CA69A0000588541 /* VHS.swift */,
 				CAF1A60D2CA6997C00588541 /* Curve.swift */,
 				CAF1A60F2CA699B500588541 /* ColorMatrix.swift */,
@@ -422,7 +428,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CAC1BB782CA5A8C400300C90 /* CIImage.swift in Sources */,
+				CAC7D8752CDA71EB000492EE /* Clones.swift in Sources */,
 				CAF1A60E2CA6997C00588541 /* Curve.swift in Sources */,
+				CAC7D8772CDA72C4000492EE /* u2netp.mlmodel in Sources */,
 				CAC1BB7B2CA5A8C400300C90 /* UIView.swift in Sources */,
 				CAC1BB6A2CA5A8C400300C90 /* CIImageCoordinator.swift in Sources */,
 				CAC1BB752CA5A8C400300C90 /* CIAppCoordinator.swift in Sources */,
