@@ -17,9 +17,11 @@ final class CICreationVideoManager {
     
     let ciSettingsModel = CISettingsModel()
     let filterManager: CIFilterManager
+    let cutoutManager: CICutoutObjectManager
     
-    init(filterManager: CIFilterManager) {
+    init(filterManager: CIFilterManager, cutoutManager: CICutoutObjectManager) {
         self.filterManager = filterManager
+        self.cutoutManager = cutoutManager
     }
 }
 

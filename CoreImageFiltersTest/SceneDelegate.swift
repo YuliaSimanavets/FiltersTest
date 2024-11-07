@@ -19,8 +19,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.backgroundColor = .white
         
         let filterManager = CIFilterManager()
-        let creationManager = CICreationVideoManager(filterManager: filterManager)
         let cutoutManager = CICutoutObjectManager(filterManager: filterManager)
+        let creationManager = CICreationVideoManager(filterManager: filterManager, cutoutManager: cutoutManager)
 
         let coordinatorFactory = CICoordinatorFactory(appContext: CIAppContext(filterManager: filterManager,
                                                                                creationManager: creationManager,
