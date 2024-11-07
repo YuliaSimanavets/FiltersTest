@@ -10,25 +10,26 @@ import CIFilterFactory
 import CoreImage
 
 final class CIFilterManager {
-    
     // создаем фильтры и настраиваем
     //
     // func .....(inputImage: CIImage) -> CIImage? {
     //     let filter = CIFilter.#filterName#(inputImage: inputImage, .......)
     //     return filter.outputImage
     // }
+}
+
+// MARK: - CICategoryBlur
+extension CIFilterManager {
     
-    // MARK: - CICategoryBlur
-  
     //Bokeh Blur
     func getCIImageWithBokehBlur(inputImage: CIImage) -> CIImage? {
-        guard let filter = CIFF.BokehBlur(inputImage: inputImage, radius: 10, 
+        guard let filter = CIFF.BokehBlur(inputImage: inputImage, radius: 10,
                                           ringAmount: 80, ringSize: 20, softness: 30),
               let ciImage = filter.outputImage
         else { return nil}
         return ciImage
     }
-
+    
     //Box Blur
     func getCIImageWithBoxBlur(inputImage: CIImage, radius: Double) -> CIImage? {
         guard let filter = CIFF.BoxBlur(inputImage: inputImage, radius: radius),
@@ -53,11 +54,22 @@ final class CIFilterManager {
         return ciImage
     }
     
-    // MARK: - Reduction Filters
-    func getCIImageWithKMeansFilter(inputImage: CIImage) -> CIImage? {
-//        count - maxValue = 128, defaultValue = 8
-//        passes - maxValue = 20, defaultValue = 5
+    //MaskedVariableBlur (Mask)
+    func getCIImageWithMaskedVariableBlur(inputImage: CIImage, inputMask: CIImage) -> CIImage? {
+        guard let filter = CIFF.MaskedVariableBlur(inputImage: inputImage, mask: inputMask, radius: 50),
+              let ciImage = filter.outputImage
+        else { return nil }
+        return ciImage
+    }
+}
 
+// MARK: - CICategoryReduction
+extension CIFilterManager {
+    
+    func getCIImageWithKMeansFilter(inputImage: CIImage) -> CIImage? {
+        //        count - maxValue = 128, defaultValue = 8
+        //        passes - maxValue = 20, defaultValue = 5
+        
         guard  let filter = CIFF.KMeans(inputImage: inputImage,
                                         extent: inputImage.extent,
                                         count: 10,
@@ -69,10 +81,10 @@ final class CIFilterManager {
         else { return nil }
         return ciImage
     }
+}
     
-    
-    // MARK: - Distortion Filters
-    
+// MARK: - CICategoryDistortionEffect
+extension CIFilterManager {
     //DisplacementDistortion
     func getCIImageWithDisplacementDistortionFilter(inputImage: CIImage,
                                                     displacementImage: CIImage,
@@ -84,23 +96,24 @@ final class CIFilterManager {
         else { return nil }
         return ciImage
     }
-/*    func displacementDistortion(inputImage: CIImage) -> CIImage? {
-        guard let displacementImage = CIFF.CheckerboardGenerator(color0: CIColor.white,
-                                                                 color1: CIColor.black,
-                                                                 width: 200),
-              let displacementOutputImage = displacementImage.outputImage,
-              let gaussianBlur = CIFF.GaussianBlur(inputImage: displacementOutputImage,
-                                                   radius: 40),
-              let gaussianBlurOutputImage = gaussianBlur.outputImage,
-              let filter = CIFF.DisplacementDistortion(inputImage: inputImage, displacementImage: gaussianBlurOutputImage, scale: 1000),
-              let ciImage = filter.outputImage
-        else { return nil }
-        return ciImage
-    }*/
+    /*    func displacementDistortion(inputImage: CIImage) -> CIImage? {
+     guard let displacementImage = CIFF.CheckerboardGenerator(color0: CIColor.white,
+     color1: CIColor.black,
+     width: 200),
+     let displacementOutputImage = displacementImage.outputImage,
+     let gaussianBlur = CIFF.GaussianBlur(inputImage: displacementOutputImage,
+     radius: 40),
+     let gaussianBlurOutputImage = gaussianBlur.outputImage,
+     let filter = CIFF.DisplacementDistortion(inputImage: inputImage, displacementImage: gaussianBlurOutputImage, scale: 1000),
+     let ciImage = filter.outputImage
+     else { return nil }
+     return ciImage
+     }*/
     
-    
-    // MARK: - CICategoryColorAdjustment
-    
+}
+
+// MARK: - CICategoryColorAdjustment
+extension CIFilterManager {
     //Exposure
     func getCIImageWithExposureFilter(inputImage: CIImage, inputEV: Double = 0.5) -> CIImage? {
         guard let filter = CIFF.ExposureAdjust(inputImage: inputImage, eV: inputEV),
@@ -151,7 +164,7 @@ final class CIFilterManager {
     }
     
     //TemperatureAndTint
-    func getCIImageWithTemperatureAndTintFilter(inputImage: CIImage, 
+    func getCIImageWithTemperatureAndTintFilter(inputImage: CIImage,
                                                 neutral: CGPoint = .init(x: 6500, y: 0),
                                                 targetNeutral: CGPoint = .init(x: 6500, y: 0)
     ) -> CIImage? {
@@ -183,7 +196,7 @@ final class CIFilterManager {
         let clampedSaturation = max(0.0, min(saturation, 2.0))
         let clampedBrightness = max(-1.0, min(brightness, 1.0))
         let clampedContrast = max(0.25, min(contrast, 4.0))
-
+        
         // Создаем фильтр с ограниченными значениями
         guard let filter = CIFF.ColorControls(inputImage: inputImage,
                                               saturation: clampedSaturation,
@@ -191,7 +204,7 @@ final class CIFilterManager {
                                               contrast: clampedContrast),
               let ciImage = filter.outputImage
         else { return nil }
-
+        
         return ciImage
     }
     
@@ -203,7 +216,7 @@ final class CIFilterManager {
         
         guard let filter = CIFF.AdditionCompositing(inputImage: noiseImage, backgroundImage: inputImage),
               let ciImage = filter.outputImage
-        else { return nil }        
+        else { return nil }
         return ciImage
     }
     // Вспомогательная функция для создания изображения noise
@@ -221,8 +234,8 @@ final class CIFilterManager {
         
         // Создаем CGImage из шума
         let colorSpace = CGColorSpaceCreateDeviceRGB()
-        let bitmapContext = CGContext(data: noiseData, width: width, height: height, 
-                                      bitsPerComponent: 8, bytesPerRow: width * 4, space: colorSpace, 
+        let bitmapContext = CGContext(data: noiseData, width: width, height: height,
+                                      bitsPerComponent: 8, bytesPerRow: width * 4, space: colorSpace,
                                       bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)
         
         guard let cgImage = bitmapContext?.makeImage() else { return nil }
@@ -262,17 +275,30 @@ final class CIFilterManager {
         else { return nil }
         return ciImage
     }
+}
     
+// MARK: - CICategoryColorEffect
+extension CIFilterManager {
     
-    // MARK: - CICategoryGeometryAdjustment
+    //CIMaskToAlpha (черные значения становятся полностью прозрачными)
+    func getCIImageMaskToAlpha(maskImage: CIImage) -> CIImage? {
+        guard let filter = CIFF.MaskToAlpha(inputImage: maskImage),
+              let ciImage = filter.outputImage
+        else { return nil }
+        return ciImage
+    }
+}
+
+// MARK: - CICategoryGeometryAdjustment
+extension CIFilterManager {
     
     //LanczosScaleTransform
     func getCIImageWithLanczosScaleTransformFilter(inputImage: CIImage, scaleFactor: Double) -> CIImage? {
         guard let filter = CIFF.LanczosScaleTransform(inputImage: inputImage, scale: scaleFactor),
               let scaledCIImage = filter.outputImage
         else { return nil }
-
-        //Если нужно изменит положение scaledCIImage относительно холста
+        
+//Если нужно изменит положение scaledCIImage относительно холста
 //        let originalSize = inputImage.extent.size
 //        let scaledImageSize = scaledCIImage.extent.size
 //
@@ -282,8 +308,10 @@ final class CIFilterManager {
         
         return scaledCIImage /*translatedImage*/
     }
-    
-    // MARK: - CICategorySharpen
+}
+
+// MARK: - CICategorySharpen
+extension CIFilterManager {
     
     //UnsharpMask
     //amount = intensity (диапазон [0, 1]), radius диапазон [0.0, 100.0]
@@ -293,8 +321,10 @@ final class CIFilterManager {
         else { return nil }
         return ciImage
     }
-    
-    // MARK: - CICategoryStylize
+}
+
+// MARK: - CICategoryStylize
+extension CIFilterManager {
     
     //CIBlendWithRedMask
     func getCIImageBlendWithRedMask(inputImage: CIImage, maskImage: CIImage) -> CIImage? {
@@ -303,10 +333,10 @@ final class CIFilterManager {
         else { return nil }
         return ciImage
     }
-
+    
     // Метод для создания фона с «черной дыркой» (на основе инвертированной маски)
     func createBackgroundWithoutObject(from backImage: CIImage, maskImage: CIImage) -> CIImage? {
-        guard let invertedMask = invertMask(maskImage) 
+        guard let invertedMask = invertMask(maskImage)
         else { return nil }
         
         // Применяем инвертированную маску к изображению для создания "дыры" на фоне
@@ -323,23 +353,30 @@ final class CIFilterManager {
         else { return nil }
         return ciImage
     }
+}
     
+// MARK: - CICategoryCompositeOperation
+extension CIFilterManager {
     
-    // MARK: - Mask
-    
-    //MaskedVariableBlur
-    func getCIImageWithMaskedVariableBlur(inputImage: CIImage, inputMask: CIImage) -> CIImage? {
-        guard let filter = CIFF.MaskedVariableBlur(inputImage: inputImage, mask: inputMask, radius: 50),
+    //SourceOverCompositing
+    func getCIImageSourceOverCompositing(image: CIImage, background: CIImage) -> CIImage? {
+        guard let filter = CIFF.SourceOverCompositing(inputImage: image, backgroundImage: background),
               let ciImage = filter.outputImage
         else { return nil }
         return ciImage
     }
     
-    // MARK: - Mix videos
+    //SourceOutCompositing
+    func getCIImageSourceOutCompositing(inputImage: CIImage, maskAlphaImage: CIImage) -> CIImage? {
+        guard let filter = CIFF.SourceOutCompositing(inputImage: inputImage, backgroundImage: maskAlphaImage),
+              let ciImage = filter.outputImage
+        else { return nil }
+        return ciImage
+    }
     
-    //SourceOverCompositing
-    func getCIImageSourceOverCompositing(image: CIImage, background: CIImage) -> CIImage? {
-        guard let filter = CIFF.SourceOverCompositing(inputImage: image, backgroundImage: background),
+    //SourceInCompositing
+    func getCIImageSourceInCompositing(inputImage: CIImage, maskAlphaImage: CIImage) -> CIImage? {
+        guard let filter = CIFF.SourceInCompositing(inputImage: inputImage, backgroundImage: maskAlphaImage),
               let ciImage = filter.outputImage
         else { return nil }
         return ciImage
