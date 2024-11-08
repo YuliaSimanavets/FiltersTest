@@ -187,6 +187,16 @@ extension CICreationVideoManager {
             guard let videoCIImage = getCIImage(with: videoOutput)
             else { break }
             
+            func getFrame(with cutoutCIImage: CIImage) {
+
+                let cutoutObjectExtent = cutoutCIImage.extent
+                guard let cutoutObjectOutputPixelBuffer = createCVPixelBuffer(forImage: cutoutCIImage,
+                                                                              size: cutoutObjectExtent.size,
+                                                                              context: ciContext)
+                else { return }
+                cutoutObjects.append(cutoutObjectOutputPixelBuffer)
+            }
+            
             autoreleasepool {
                 //   TODO: - здесь можно тестировать обработку с CutOut объектами
                 switch frameNumber {
@@ -197,15 +207,7 @@ extension CICreationVideoManager {
                           let finalCIImage = cutoutResult.backgroundWithoutObjectImage
                     else { return }
           
-                    
-                    let cutoutObjectExtent = cutoutObjectCIImage.extent
-                    let cutoutObjectOutputPixelBuffer = self.createCVPixelBuffer(forImage: cutoutObjectCIImage,
-                                                                                 size: cutoutObjectExtent.size,
-                                                                                 context: ciContext)
-                    guard let cutoutObjectOutputPixelBuffer = cutoutObjectOutputPixelBuffer else { return }
-                    cutoutObjects.append(cutoutObjectOutputPixelBuffer)
-                    
-                    
+                    getFrame(with: cutoutObjectCIImage)
                     
                     let extent = videoCIImage.extent
                     let outputPixelBuffer = createCVPixelBuffer(forImage: finalCIImage, size: extent.size, context: ciContext)

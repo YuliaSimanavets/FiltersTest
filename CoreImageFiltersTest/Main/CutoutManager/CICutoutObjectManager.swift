@@ -12,7 +12,7 @@ import UIKit
 class CICutoutObjectManager {
     
     private var visionModel: VNCoreMLModel?
-    private let segmentationModel = DeepLabV3()
+//    private let segmentationModel = DeepLabV3(configuration: .init()).model
     
     private let filterManager: CIFilterManager
 
@@ -22,7 +22,7 @@ class CICutoutObjectManager {
     }
 
     private func setupModel() {
-        if let visionModel = try? VNCoreMLModel(for: segmentationModel.model) {
+        if let visionModel = try? VNCoreMLModel(for: DeepLabV3(configuration: .init()).model) {
             self.visionModel = visionModel
         } else {
             fatalError("Could not load Vision model")
