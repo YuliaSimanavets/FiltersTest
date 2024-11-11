@@ -164,6 +164,8 @@ extension CICreationVideoManager {
         var presentationTime: CMTime = .zero
         
         var frameNumber = 0
+        var timeForAnim = 0
+        
         let videoDuration = try! await videoAsset.load(.duration)
         let videoFrameRate = try! await videoTrack.load(.nominalFrameRate)
         let videoFrame = videoDuration.seconds * Double(videoFrameRate)
@@ -172,12 +174,13 @@ extension CICreationVideoManager {
         var cutoutObjects: [CVPixelBuffer] = []
         var anotherBuffers: [CVPixelBuffer] = []
         
-        func recordingProcessedFrame(outputPixelBuffer: CVPixelBuffer?) {
+        func recordingProcessedFrame(outputPixelBuffer: CVPixelBuffer?, completion: (() -> Void)?) {
             if let outputPixelBuffer = outputPixelBuffer {
                 while !imageBufferAdaptor.assetWriterInput.isReadyForMoreMediaData { }
                 imageBufferAdaptor.append(outputPixelBuffer, withPresentationTime: presentationTime)
                 presentationTime = CMTimeAdd(presentationTime, frameDuration)
-                frameNumber += 1
+//                frameNumber += 1
+                completion?()
                 debugPrint("[Create]: FRAME NUMBER - \(frameNumber)")
             }
         }
@@ -189,60 +192,88 @@ extension CICreationVideoManager {
             
             func getFrame(with cutoutCIImage: CIImage) {
 
+                let radius = linear(time: Float(timeForAnim), startValue: 83, change: -83, duration: Float(9 * fps))
+
+                guard let filteredCIImage = filterManager.getCIImageWithMotionBlur(image: cutoutCIImage,
+                                                                                   radius: Double(radius),
+                                                                                   angle: 1.57)
+                else { return }
+                
                 let cutoutObjectExtent = cutoutCIImage.extent
-                guard let cutoutObjectOutputPixelBuffer = createCVPixelBuffer(forImage: cutoutCIImage,
+                guard let cutoutObjectOutputPixelBuffer = createCVPixelBuffer(forImage: filteredCIImage /*cutoutCIImage*/,
                                                                               size: cutoutObjectExtent.size,
                                                                               context: ciContext)
                 else { return }
                 cutoutObjects.append(cutoutObjectOutputPixelBuffer)
             }
             
+            func linear(time: Float, startValue: Float, change: Float, duration: Float) -> Float {
+                return change * time / duration + startValue
+            }
+            
             autoreleasepool {
-                //   TODO: - здесь можно тестировать обработку с CutOut объектами
                 switch frameNumber {
-                case (0 * fps)..<(10 * fps):
+                case (0 * fps)..<(20 * fps):
+                    
+                    let radius = linear(time: Float(timeForAnim), startValue: 83, change: -83, duration: Float(20 * fps))
                     
                     let cutoutResult = cutoutManager.getCutoutObjects(inputImage: videoCIImage)
                     guard let cutoutObjectCIImage = cutoutResult.objectImage,
-                          let finalCIImage = cutoutResult.backgroundWithoutObjectImage
+                          let filteredCutoutObjectCIImage = filterManager.getCIImageWithMotionBlur(
+                            image: cutoutObjectCIImage,
+                            radius: Double(radius),
+                            angle: 1.57),
+                          let finalCIImage = filterManager.getCIImageSourceOverCompositing(
+                            image: filteredCutoutObjectCIImage,
+                            background: videoCIImage)
                     else { return }
           
-                    getFrame(with: cutoutObjectCIImage)
+//                    getFrame(with: cutoutObjectCIImage)
                     
                     let extent = videoCIImage.extent
                     let outputPixelBuffer = createCVPixelBuffer(forImage: finalCIImage, size: extent.size, context: ciContext)
 
-                    recordingProcessedFrame(outputPixelBuffer: outputPixelBuffer)
+                    recordingProcessedFrame(outputPixelBuffer: outputPixelBuffer) {
+                        frameNumber += 1
+                        timeForAnim += 1
+                    }
                     
                 default:
-                    
+                    timeForAnim = 0
                     let extent = videoCIImage.extent
                     let outputPixelBuffer = createCVPixelBuffer(forImage: videoCIImage, size: extent.size, context: ciContext)
                     
                     guard let outputPixelBuffer = outputPixelBuffer else { return }
-                    anotherBuffers.append(outputPixelBuffer)
-                    frameNumber += 1
+                    recordingProcessedFrame(outputPixelBuffer: outputPixelBuffer) {
+                        frameNumber += 1
+                    }
+//                    anotherBuffers.append(outputPixelBuffer)
+//                    frameNumber += 1
                 }
             }
         }
         
-        frameNumber = 10
-        while frameNumber < (Int(videoFrame) * fps) {
-
-            switch frameNumber {
-            case (10 * fps)..<(20 * fps):
-                
-                cutoutObjects.forEach { buffer in
-                    recordingProcessedFrame(outputPixelBuffer: buffer)
-                }
-                
-            default:
-                
-                anotherBuffers.forEach { buffer in
-                    recordingProcessedFrame(outputPixelBuffer: buffer)
-                }
-            }
-        }
+//        frameNumber = 10
+//        while frameNumber < (Int(videoFrame) * fps) {
+//
+//            switch frameNumber {
+//            case (10 * fps)..<(20 * fps):
+//                
+//                cutoutObjects.forEach { buffer in
+//                    recordingProcessedFrame(outputPixelBuffer: buffer) {
+//                        frameNumber += 1
+//                    }
+//                }
+//                
+//            default:
+//                
+//                anotherBuffers.forEach { buffer in
+//                    recordingProcessedFrame(outputPixelBuffer: buffer) {
+//                        frameNumber += 1
+//                    }
+//                }
+//            }
+//        }
         
         outputVideoInput.markAsFinished()
         await outputWriter?.finishWriting()

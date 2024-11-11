@@ -326,6 +326,16 @@ extension CIFilterManager {
 // MARK: - CICategoryStylize
 extension CIFilterManager {
     
+    //CIBlendWithMask
+    func getCIImageBlendWithMask(inputImage: CIImage, backgroundImage: CIImage, maskImage: CIImage) -> CIImage? {
+        guard let filter = CIFF.BlendWithMask(inputImage: inputImage,
+                                              backgroundImage: backgroundImage,
+                                              maskImage: maskImage),
+              let ciImage = filter.outputImage
+        else { return nil }
+        return ciImage
+    }
+    
     //CIBlendWithRedMask
     func getCIImageBlendWithRedMask(inputImage: CIImage, maskImage: CIImage) -> CIImage? {
         guard let filter = CIFF.BlendWithRedMask(inputImage: inputImage, maskImage: maskImage),
