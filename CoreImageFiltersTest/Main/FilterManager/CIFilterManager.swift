@@ -243,12 +243,25 @@ extension CIFilterManager {
     }
     
     //CIToneCurve
+//    func getCIImageWithToneCurveFilter(inputImage: CIImage,
+//                                       points: CurvePoints = .init(photoshopPoint0: .init(x: 0, y: 0),
+//                                                                   photoshopPoint1: .init(x: 63.75, y: 63.75),
+//                                                                   photoshopPoint2: .init(x: 127.5, y: 127.5),
+//                                                                   photoshopPoint3: .init(x: 191.25, y: 191.25),
+//                                                                   photoshopPoint4: .init(x: 255, y: 255))
+//    ) -> CIImage? {
+//        guard let filter = CIFF.ToneCurve(inputImage: inputImage, point0: points.point0, point1: points.point1,
+//                                          point2: points.point2, point3: points.point3, point4: points.point4),
+//              let ciImage = filter.outputImage
+//        else { return nil }
+//        return ciImage
+//    }
     func getCIImageWithToneCurveFilter(inputImage: CIImage,
                                        points: CurvePoints = .init(photoshopPoint0: .init(x: 0, y: 0),
-                                                                   photoshopPoint1: .init(x: 63.75, y: 63.75),
-                                                                   photoshopPoint2: .init(x: 127.5, y: 127.5),
-                                                                   photoshopPoint3: .init(x: 191.25, y: 191.25),
-                                                                   photoshopPoint4: .init(x: 255, y: 255))
+                                                                   photoshopPoint1: .init(x: 0.25, y: 0.25),
+                                                                   photoshopPoint2: .init(x: 0.5, y: 0.5),
+                                                                   photoshopPoint3: .init(x: 0.75, y: 0.75),
+                                                                   photoshopPoint4: .init(x: 1, y: 1))
     ) -> CIImage? {
         guard let filter = CIFF.ToneCurve(inputImage: inputImage, point0: points.point0, point1: points.point1,
                                           point2: points.point2, point3: points.point3, point4: points.point4),

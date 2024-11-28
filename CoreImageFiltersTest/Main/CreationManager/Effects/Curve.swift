@@ -54,14 +54,14 @@ extension CICreationVideoManager {
 //   TODO: - здесь можно тестировать обработку: tone curve filter
                 // tone curve filter
                 // в переменную points вводим значения из photoShop(?)
-                let points = CurvePoints(photoshopPoint0: .init(x: 0, y: 0),
-                                         photoshopPoint1: .init(x: 50, y: 80),
-                                         photoshopPoint2: .init(x: 140, y: 150),
-                                         photoshopPoint3: .init(x: 200, y: 200),
-                                         photoshopPoint4: .init(x: 255, y: 255))
+                let points = CurvePoints(photoshopPoint0: .init(x: 0.06, y: 0),
+                                         photoshopPoint1: .init(x: 0.234, y: 0.26),
+                                         photoshopPoint2: .init(x: 0.48, y: 0.53),
+                                         photoshopPoint3: .init(x: 0.75, y: 0.7),
+                                         photoshopPoint4: .init(x: 1, y: 0.78))
                 
-                guard let finalCIImage = filterManager.getCIImageWithToneCurveFilter(inputImage: videoCIImage,
-                                                                                     points: points
+                guard let finalCIImage = filterManager.getCIImageWithToneCurveFilter(inputImage: videoCIImage
+//                                                                                     points: points
                                                                                      /* параметр "points : ... " можно удалить, тогда возьмутся значения точек по умолчанию */)
                 else { return }
                 

@@ -39,14 +39,28 @@ final class CIImageViewModel {
 //        let displacementDistortion = filterManager.displacementDistortion(inputImage: firstCIImage)
         
         
+        // Curve filter
+//        let points = CurvePoints(photoshopPoint0: .init(x: 0.06, y: 0),
+//                                 photoshopPoint1: .init(x: 0.234, y: 0.26),
+//                                 photoshopPoint2: .init(x: 0.48, y: 0.53),
+//                                 photoshopPoint3: .init(x: 0.75, y: 0.7),
+//                                 photoshopPoint4: .init(x: 1, y: 0.78))
+        // change X / Y - получилось (оси в Ае и xCode меняются местами)
+        let points = CurvePoints(photoshopPoint0: .init(x: 0, y: 0.06),
+                                 photoshopPoint1: .init(x: 0.26, y: 0.234),
+                                 photoshopPoint2: .init(x: 0.53, y: 0.48),
+                                 photoshopPoint3: .init(x: 0.7, y: 0.75),
+                                 photoshopPoint4: .init(x: 0.78, y: 1))
+        
+        let curveFilter = filterManager.getCIImageWithToneCurveFilter(inputImage: firstCIImage, points: points)
+        
         // здесь ничего менять не нужно
         let ciContext = CIContext(options: nil)
         let srcScale = image.scale
         let srcOrientation = image.imageOrientation
         
         // здесь менять фильтры
-        guard let filteredImageData = bokehBlur else { return nil }
-        
+        guard let filteredImageData = curveFilter else { return nil }
         
         // здесь ничего не меняем
         let filteredImageRef = ciContext.createCGImage(filteredImageData, from: firstCIImage.extent)

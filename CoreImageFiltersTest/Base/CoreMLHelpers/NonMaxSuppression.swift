@@ -19,7 +19,7 @@
   FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
   IN THE SOFTWARE.
 */
-
+/*
 import Foundation
 import Accelerate
 
@@ -189,3 +189,4 @@ public func nonMaxSuppressionMultiClass(numClasses: Int,
   let sortedBoxes = selectedBoxes.sorted { boundingBoxes[$0].score > boundingBoxes[$1].score }
   return Array(sortedBoxes.prefix(maxTotal))
 }
+*/

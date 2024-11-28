@@ -19,7 +19,7 @@
   FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
   IN THE SOFTWARE.
 */
-
+/*
 import CoreML
 import Combine
 
@@ -58,3 +58,4 @@ extension Publisher where Self.Output: MLFeatureProvider {
     tryMap { input in try model.prediction(from: input) }
   }
 }
+*/

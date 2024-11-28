@@ -19,7 +19,7 @@
   FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
   IN THE SOFTWARE.
 */
-
+/*
 import Swift
 
 extension Array where Element: Comparable {
@@ -54,3 +54,4 @@ extension Array where Element: Comparable {
     return indices.map { self[$0] }
   }
 }
+*/

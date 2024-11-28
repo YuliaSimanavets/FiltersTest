@@ -27,16 +27,28 @@ struct CurvePoints {
     let point3: CGPoint
     let point4: CGPoint
     
+//    init(photoshopPoint0: CGPoint,
+//         photoshopPoint1: CGPoint,
+//         photoshopPoint2: CGPoint,
+//         photoshopPoint3: CGPoint,
+//         photoshopPoint4: CGPoint) {
+//        self.point0 = CGPoint(x: photoshopPoint0.x / 255, y: photoshopPoint0.y / 255)
+//        self.point1 = CGPoint(x: photoshopPoint1.x / 255, y: photoshopPoint1.y / 255)
+//        self.point2 = CGPoint(x: photoshopPoint2.x / 255, y: photoshopPoint2.y / 255)
+//        self.point3 = CGPoint(x: photoshopPoint3.x / 255, y: photoshopPoint3.y / 255)
+//        self.point4 = CGPoint(x: photoshopPoint4.x / 255, y: photoshopPoint4.y / 255)
+//    }
+    
     init(photoshopPoint0: CGPoint,
          photoshopPoint1: CGPoint,
          photoshopPoint2: CGPoint,
          photoshopPoint3: CGPoint,
          photoshopPoint4: CGPoint) {
-        self.point0 = CGPoint(x: photoshopPoint0.x / 255, y: photoshopPoint0.y / 255)
-        self.point1 = CGPoint(x: photoshopPoint1.x / 255, y: photoshopPoint1.y / 255)
-        self.point2 = CGPoint(x: photoshopPoint2.x / 255, y: photoshopPoint2.y / 255)
-        self.point3 = CGPoint(x: photoshopPoint3.x / 255, y: photoshopPoint3.y / 255)
-        self.point4 = CGPoint(x: photoshopPoint4.x / 255, y: photoshopPoint4.y / 255)
+        self.point0 = CGPoint(x: photoshopPoint0.x, y: photoshopPoint0.y)
+        self.point1 = CGPoint(x: photoshopPoint1.x, y: photoshopPoint1.y)
+        self.point2 = CGPoint(x: photoshopPoint2.x, y: photoshopPoint2.y)
+        self.point3 = CGPoint(x: photoshopPoint3.x, y: photoshopPoint3.y)
+        self.point4 = CGPoint(x: photoshopPoint4.x, y: photoshopPoint4.y)
     }
 }
 

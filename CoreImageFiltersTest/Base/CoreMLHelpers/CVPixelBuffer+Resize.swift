@@ -19,7 +19,7 @@
   FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
   IN THE SOFTWARE.
 */
-
+/*
 import Foundation
 import Accelerate
 import CoreImage
@@ -155,3 +155,4 @@ public func resizePixelBuffer(_ pixelBuffer: CVPixelBuffer,
   let scaledImage = ciImage.transformed(by: scaleTransform)
   context.render(scaledImage, to: output)
 }
+*/

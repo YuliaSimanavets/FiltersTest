@@ -19,7 +19,7 @@
   FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
   IN THE SOFTWARE.
 */
-
+/*
 import CoreML
 
 extension MLMultiArray {
@@ -94,3 +94,4 @@ extension MLMultiArray {
     return newArray
   }
 }
+*/
