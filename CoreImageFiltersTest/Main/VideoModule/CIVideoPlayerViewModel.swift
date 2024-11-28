@@ -31,6 +31,10 @@ final class CIVideoPlayerViewModel {
             // Clones + Overlays filter
         case .clonesOverlay:
             preparedURL = try? await creationManager.applyClonesEffectWithOverlaysToComp(assetURL: url)
+            
+            // Cut filter
+        case .cut:
+            preparedURL = try? await creationManager.applyCutEffectToComp(assetURL: url)
 
             // VHS filter
         case .vhs:

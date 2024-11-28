@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A3FCDF57AB8FF6E30C79E100 /* Pods_CoreImageFiltersTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD5357FE40D5F723BB735C58 /* Pods_CoreImageFiltersTest.framework */; };
-		CA08CEDD2CE1E5B300BFF147 /* DeepLabV3 2.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = CA08CEDC2CE1E5B300BFF147 /* DeepLabV3 2.mlmodel */; };
+		CA08CEDD2CE1E5B300BFF147 /* DeepLabV3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = CA08CEDC2CE1E5B300BFF147 /* DeepLabV3.mlmodel */; };
 		CA27E1C32CDCBDDF00E0D475 /* NonMaxSuppression.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA27E1BD2CDCBDDF00E0D475 /* NonMaxSuppression.swift */; };
 		CA27E1C42CDCBDDF00E0D475 /* MLMultiArray+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA27E1BC2CDCBDDF00E0D475 /* MLMultiArray+Image.swift */; };
 		CA27E1C52CDCBDDF00E0D475 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA27E1B12CDCBDDF00E0D475 /* Array+Extensions.swift */; };
@@ -27,6 +27,11 @@
 		CA27E1D22CDCBDDF00E0D475 /* Predictions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA27E1BE2CDCBDDF00E0D475 /* Predictions.swift */; };
 		CA27E1D32CDCBDDF00E0D475 /* CGImagePropertyOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA27E1B42CDCBDDF00E0D475 /* CGImagePropertyOrientation.swift */; };
 		CA27E1D62CDCED5F00E0D475 /* CICutoutObjectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA27E1D52CDCED5F00E0D475 /* CICutoutObjectManager.swift */; };
+		CA7E006B2CE3A6C400A2AEC0 /* Cut.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7E006A2CE3A6C400A2AEC0 /* Cut.swift */; };
+		CA7E006D2CE3AE7E00A2AEC0 /* Stroke-Animation-Mask.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CA7E006C2CE3AE7E00A2AEC0 /* Stroke-Animation-Mask.mp4 */; };
+		CAA5377E2CECA20200E8891D /* Clones + Overlays.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA5377D2CECA20200E8891D /* Clones + Overlays.swift */; };
+		CAA537812CECA26100E8891D /* Clones_endOverlay.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CAA5377F2CECA26100E8891D /* Clones_endOverlay.mp4 */; };
+		CAA537822CECA26100E8891D /* Clones_betweenOverlay.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CAA537802CECA26100E8891D /* Clones_betweenOverlay.mp4 */; };
 		CAC1BB1D2CA5A2BB00300C90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC1BB1C2CA5A2BB00300C90 /* AppDelegate.swift */; };
 		CAC1BB1F2CA5A2BB00300C90 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC1BB1E2CA5A2BB00300C90 /* SceneDelegate.swift */; };
 		CAC1BB262CA5A2BC00300C90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAC1BB252CA5A2BC00300C90 /* Assets.xcassets */; };
@@ -70,7 +75,7 @@
 		3A70B46B65009AC1FCF7E0FA /* Pods-CoreImageFiltersTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoreImageFiltersTest.debug.xcconfig"; path = "Target Support Files/Pods-CoreImageFiltersTest/Pods-CoreImageFiltersTest.debug.xcconfig"; sourceTree = "<group>"; };
 		83EC05E7D96E055FD910C086 /* Pods-CoreImageFiltersTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoreImageFiltersTest.release.xcconfig"; path = "Target Support Files/Pods-CoreImageFiltersTest/Pods-CoreImageFiltersTest.release.xcconfig"; sourceTree = "<group>"; };
 		AD5357FE40D5F723BB735C58 /* Pods_CoreImageFiltersTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoreImageFiltersTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CA08CEDC2CE1E5B300BFF147 /* DeepLabV3 2.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = "DeepLabV3 2.mlmodel"; sourceTree = "<group>"; };
+		CA08CEDC2CE1E5B300BFF147 /* DeepLabV3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = DeepLabV3.mlmodel; sourceTree = "<group>"; };
 		CA27E1B12CDCBDDF00E0D475 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		CA27E1B22CDCBDDF00E0D475 /* CGImage+CVPixelBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGImage+CVPixelBuffer.swift"; sourceTree = "<group>"; };
 		CA27E1B32CDCBDDF00E0D475 /* CGImage+RawBytes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGImage+RawBytes.swift"; sourceTree = "<group>"; };
@@ -89,6 +94,11 @@
 		CA27E1C02CDCBDDF00E0D475 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		CA27E1C12CDCBDDF00E0D475 /* UIImage+RawBytes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+RawBytes.swift"; sourceTree = "<group>"; };
 		CA27E1D52CDCED5F00E0D475 /* CICutoutObjectManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CICutoutObjectManager.swift; sourceTree = "<group>"; };
+		CA7E006A2CE3A6C400A2AEC0 /* Cut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cut.swift; sourceTree = "<group>"; };
+		CA7E006C2CE3AE7E00A2AEC0 /* Stroke-Animation-Mask.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Stroke-Animation-Mask.mp4"; sourceTree = "<group>"; };
+		CAA5377D2CECA20200E8891D /* Clones + Overlays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Clones + Overlays.swift"; sourceTree = "<group>"; };
+		CAA5377F2CECA26100E8891D /* Clones_endOverlay.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Clones_endOverlay.mp4; sourceTree = "<group>"; };
+		CAA537802CECA26100E8891D /* Clones_betweenOverlay.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Clones_betweenOverlay.mp4; sourceTree = "<group>"; };
 		CAC1BB192CA5A2BB00300C90 /* CoreImageFiltersTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreImageFiltersTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAC1BB1C2CA5A2BB00300C90 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAC1BB1E2CA5A2BB00300C90 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -297,10 +307,13 @@
 		CAC1BB562CA5A8C400300C90 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CAA5377F2CECA26100E8891D /* Clones_endOverlay.mp4 */,
+				CAA537802CECA26100E8891D /* Clones_betweenOverlay.mp4 */,
 				CAC1BB542CA5A8C400300C90 /* VHS_DisplaceMap.mp4 */,
+				CA7E006C2CE3AE7E00A2AEC0 /* Stroke-Animation-Mask.mp4 */,
 				CAC1BB552CA5A8C400300C90 /* VHS_Overlay.mov */,
 				CAC7D8762CDA72C4000492EE /* u2netp.mlmodel */,
-				CA08CEDC2CE1E5B300BFF147 /* DeepLabV3 2.mlmodel */,
+				CA08CEDC2CE1E5B300BFF147 /* DeepLabV3.mlmodel */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -360,6 +373,8 @@
 			isa = PBXGroup;
 			children = (
 				CAC7D8742CDA71EB000492EE /* Clones.swift */,
+				CAA5377D2CECA20200E8891D /* Clones + Overlays.swift */,
+				CA7E006A2CE3A6C400A2AEC0 /* Cut.swift */,
 				CAF1A6112CA69A0000588541 /* VHS.swift */,
 				CAF1A60D2CA6997C00588541 /* Curve.swift */,
 				CAF1A60F2CA699B500588541 /* ColorMatrix.swift */,
@@ -444,7 +459,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA7E006D2CE3AE7E00A2AEC0 /* Stroke-Animation-Mask.mp4 in Resources */,
 				CAC1BB262CA5A2BC00300C90 /* Assets.xcassets in Resources */,
+				CAA537812CECA26100E8891D /* Clones_endOverlay.mp4 in Resources */,
+				CAA537822CECA26100E8891D /* Clones_betweenOverlay.mp4 in Resources */,
 				CAC1BB742CA5A8C400300C90 /* VHS_Overlay.mov in Resources */,
 				CAC1BB732CA5A8C400300C90 /* VHS_DisplaceMap.mp4 in Resources */,
 				CAC1BB292CA5A2BC00300C90 /* Base in Resources */,
@@ -508,6 +526,7 @@
 				CAC1BB7B2CA5A8C400300C90 /* UIView.swift in Sources */,
 				CAC1BB6A2CA5A8C400300C90 /* CIImageCoordinator.swift in Sources */,
 				CAC1BB752CA5A8C400300C90 /* CIAppCoordinator.swift in Sources */,
+				CA7E006B2CE3A6C400A2AEC0 /* Cut.swift in Sources */,
 				CAC1BB1D2CA5A2BB00300C90 /* AppDelegate.swift in Sources */,
 				CAC1BB692CA5A8C400300C90 /* CISettingsModel.swift in Sources */,
 				CAC1BB6D2CA5A8C400300C90 /* FilterName.swift in Sources */,
@@ -526,6 +545,7 @@
 				CA27E1CF2CDCBDDF00E0D475 /* CVPixelBuffer+Create.swift in Sources */,
 				CA27E1D02CDCBDDF00E0D475 /* CGImage+CVPixelBuffer.swift in Sources */,
 				CA27E1D12CDCBDDF00E0D475 /* UIImage+Extensions.swift in Sources */,
+				CAA5377E2CECA20200E8891D /* Clones + Overlays.swift in Sources */,
 				CA27E1D22CDCBDDF00E0D475 /* Predictions.swift in Sources */,
 				CA27E1D32CDCBDDF00E0D475 /* CGImagePropertyOrientation.swift in Sources */,
 				CAC1BB6F2CA5A8C400300C90 /* CIVideoPlayerCoordinator.swift in Sources */,
@@ -547,7 +567,7 @@
 				CAC1BB682CA5A8C400300C90 /* CIFilterManager.swift in Sources */,
 				CAC1BB762CA5A8C400300C90 /* CICoordinator.swift in Sources */,
 				CAF1A6102CA699B500588541 /* ColorMatrix.swift in Sources */,
-				CA08CEDD2CE1E5B300BFF147 /* DeepLabV3 2.mlmodel in Sources */,
+				CA08CEDD2CE1E5B300BFF147 /* DeepLabV3.mlmodel in Sources */,
 				CAC1BB6C2CA5A8C400300C90 /* CIImageViewModel.swift in Sources */,
 				CAC1BB1F2CA5A2BB00300C90 /* SceneDelegate.swift in Sources */,
 			);
