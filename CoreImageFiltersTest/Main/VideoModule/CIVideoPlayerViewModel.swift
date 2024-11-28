@@ -24,12 +24,16 @@ final class CIVideoPlayerViewModel {
     
     func preparedVideo(by url: URL, filterID: FilterName) async -> URL? {
         switch filterID {
-        case .clones:
             // Clones filter
+        case .clones:
             preparedURL = try? await creationManager.applyClonesEffectToComp(assetURL: url)
+            
+            // Clones + Overlays filter
+        case .clonesOverlay:
+            preparedURL = try? await creationManager.applyClonesEffectWithOverlaysToComp(assetURL: url)
 
-        case .vhs:
             // VHS filter
+        case .vhs:
             preparedURL = try? await creationManager.applyVHSEffectToComp(assetURL: url)
             
             // Curve filter

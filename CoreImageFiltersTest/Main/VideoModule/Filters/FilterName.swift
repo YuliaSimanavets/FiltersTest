@@ -9,6 +9,7 @@ import UIKit
 
 enum FilterName: String, CaseIterable {
     case clones = "Clones"
+    case clonesOverlay = "Clones + Overlays"
     case vhs  = "VHS"
 //    case vhs2 = "VHS-2"
 //    case crt = "CRT"
